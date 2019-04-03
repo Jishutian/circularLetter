@@ -3,7 +3,6 @@ var dispIns = [];
 
 function Dispatcher(){
 	dispIns.push(this);
-  console.log(1111111,this)
 	dispCbs.push({});
 }
 Dispatcher.prototype = {

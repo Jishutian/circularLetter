@@ -35,10 +35,6 @@ Page({
 				unReadTotalNotNum: getApp().globalData.saveFriendList.length + getApp().globalData.saveGroupInvitedList.length
 			});
 		});
-		disp.on("em.xmpp.contacts.remove", function(message){
-			// 个人操作，不用判断 curPage
-			me.getRoster();
-		});
 		//监听未读“聊天”
 		disp.on("em.xmpp.unreadspot", function(){
 			me.setData({
@@ -70,66 +66,10 @@ Page({
 				isIPX: true
 			})
 		}
-		this.getRoster();
 	},
 
-	getRoster(){
-		let me = this;
-		let rosters = {
-			success(roster){
-				var member = [];
-				for(let i = 0; i < roster.length; i++){
-					if(roster[i].subscription == "both"){
-						member.push(roster[i]);
-					}
-				}
-				wx.setStorage({
-					key: "member",
-					data: member
-				});
-				me.setData({member: member});
-				if(!systemReady){
-					disp.fire("em.main.ready");
-					systemReady = true;
-				}
-				me.getBrands(member);
-			},
-			error(err){
-				console.log("[main:getRoster]", err);
-			}
-		};
-		// WebIM.conn.setPresence()
-		WebIM.conn.getRoster(rosters);
 
-	},
 
-	moveFriend: function(message){
-		let me = this;
-		let rosters = {
-			success: function(roster){
-				var member = [];
-				for(let i = 0; i < roster.length; i++){
-					if(roster[i].subscription == "both"){
-						member.push(roster[i]);
-					}
-				}
-				me.setData({
-					member: member
-				});
-			}
-		};
-		if(message.type == "unsubscribe" || message.type == "unsubscribed"){
-			WebIM.conn.removeRoster({
-				to: message.from,
-				success: function(){
-					WebIM.conn.unsubscribed({
-						to: message.from
-					});
-					WebIM.conn.getRoster(rosters);
-				}
-			});
-		}
-	},
 
 	handleFriendMsg: function(message){
 		wx.showModal({
@@ -158,39 +98,6 @@ Page({
 		});
 	},
 
-	delete_friend: function(event){
-		const me = this;
-		var delName = event.currentTarget.dataset.username;
-		var myName = wx.getStorageSync("myUsername");// 获取当前用户名
-		wx.showModal({
-			title: "确认删除好友111111" + delName,
-			cancelText: "取消",
-			confirmText: "删除",
-			success(res){
-				if(res.confirm == true){
-					WebIM.conn.removeRoster({
-						to: delName,
-						success: function(){
-							WebIM.conn.unsubscribed({
-								to: delName
-							});
-							// wx.showToast({
-							// 	title: "删除成功",
-							// });
-							me.toastSuccess('删除成功');
-							// 删除好友后 同时清空会话
-							wx.setStorageSync(delName + myName, "");
-							wx.setStorageSync("rendered_" + delName + myName, "");
-							me.getRoster();
-						},
-						error: function(error){
-							me.toastSuccess('删除失败');
-						}
-					});
-				}
-			}
-		});
-	},
 
 	openSearch: function(){
 		this.setData({

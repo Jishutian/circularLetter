@@ -11,6 +11,7 @@ Page({
 	onLoad(options){
 		let username = JSON.parse(options.username);
 		this.setData({ username: username });
+    console.log(username)
 		wx.setNavigationBarTitle({
 			title: username.your
 		});

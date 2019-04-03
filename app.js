@@ -6,6 +6,21 @@ let msgType = require("comps/chat/msgtype");
 let ToastPannel = require("./comps/toast/toast");
 let disp = require("utils/broadcast");
 
+// 每次接受信息都需要判断下对方是不是我的好友，不是的话就把信息缓存起来，当做是好友
+function addFriend(data){
+  let member = wx.getStorageSync('member')||[];
+
+  let arr=member.filter(i=>{
+    return i.name==data.from;
+  })
+  if (arr.length<=0){
+    member.push({ "groups": [], "name": data.from, "subscription": "both", "jid": "" })
+    wx.setStorageSync("member", member)
+  }
+
+}
+
+
 function ack(receiveMsg){
 	// 处理未读消息回执
 	var bodyId = receiveMsg.id;         // 需要发送已读回执的消息id
@@ -167,10 +182,6 @@ App({
 					});
 					break;
 				case "unsubscribed":
-					// wx.showToast({
-					// 	title: "已拒绝",
-					// 	duration: 1000
-					// });
 					break;
 				case "memberJoinPublicGroupSuccess":
 					wx.showToast({
@@ -178,58 +189,16 @@ App({
 						duration: 1000
 					});
 					break;
-				// 好友列表
-				// case "subscribed":
-				// 	let newFriendList = [];
-				// 	for(let i = 0; i < me.globalData.saveFriendList.length; i++){
-				// 		if(me.globalData.saveFriendList[i].from != message.from){
-				// 			newFriendList.push(me.globalData.saveFriendList[i]);
-				// 		}
-				// 	}
-				// 	me.globalData.saveFriendList = newFriendList;
-				// 	break;
-				// 删除好友
 				case "unavailable":
 					disp.fire("em.xmpp.contacts.remove", message);
 					break;
-
-				// case "joinChatRoomSuccess":
-				// 	wx.showToast({
-				// 		title: "JoinChatRoomSuccess",
-				// 	});
-				// 	break;
-				// case "memberJoinChatRoomSuccess":
-				// 	wx.showToast({
-				// 		title: "memberJoinChatRoomSuccess",
-				// 	});
-				// 	break;
-				// case "memberLeaveChatRoomSuccess":
-				// 	wx.showToast({
-				// 		title: "leaveChatRoomSuccess",
-				// 	});
-				// 	break;
-
 				default:
 					break;
 				}
 			},
-
-			onRoster(message){
-				// let pages = getCurrentPages();
-				// if(pages[0]){
-				// 	pages[0].onShow();
-				// }
-			},
-
-			// onVideoMessage(message){
-			// 	console.log("onVideoMessage: ", message);
-			// 	if(message){
-			// 		msgStorage.saveReceiveMsg(message, msgType.VIDEO);
-			// 	}
-			// },
-
 			onAudioMessage(message){
 				console.log("onAudioMessage", message);
+        addFriend(message)
 				if(message){
 					if(onMessageError(message)){
 						msgStorage.saveReceiveMsg(message, msgType.AUDIO);
@@ -241,6 +210,7 @@ App({
 			
 			onCmdMessage(message){
 				console.log("onCmdMessage", message);
+        addFriend(message)
 				if(message){
 					if(onMessageError(message)){
 						msgStorage.saveReceiveMsg(message, msgType.CMD);
@@ -259,6 +229,7 @@ App({
 
 			onTextMessage(message){
 				console.log("onTextMessage", message);
+        addFriend(message)
 				if(message){
 					if(onMessageError(message)){
 						msgStorage.saveReceiveMsg(message, msgType.TEXT);
@@ -270,6 +241,7 @@ App({
 
 			onEmojiMessage(message){
 				console.log("onEmojiMessage", message);
+        addFriend(message)
 				if(message){
 					if(onMessageError(message)){
 						msgStorage.saveReceiveMsg(message, msgType.EMOJI);
@@ -281,6 +253,7 @@ App({
 
 			onPictureMessage(message){
 				console.log("onPictureMessage", message);
+        addFriend(message)
 				if(message){
 					if(onMessageError(message)){
 						msgStorage.saveReceiveMsg(message, msgType.IMAGE);
@@ -292,6 +265,7 @@ App({
 
 			onFileMessage(message){
 				console.log('onFileMessage', message);
+        addFriend(message)
 				if (message) {
 					if(onMessageError(message)){
 						msgStorage.saveReceiveMsg(message, msgType.FILE);

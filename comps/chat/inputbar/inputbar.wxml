@@ -6,9 +6,9 @@
 	<!-- <chat-suit-video id="chat-suit-video" username="{{ username }}"></chat-suit-video> -->
 	
 	<view class="other_func {{isIPX? 'other_func_X': ''}}">
-		<!-- <view class="open_emoji" bind:tap="openEmoji">
+		<view class="open_emoji" bind:tap="openEmoji">
 			<image src="../../../images/Emoji.png"/>
-		</view> -->
+		</view>
 		<view class="v-record" bind:tap="toggleRecordModal">
 			<image
 				class="icon-record"

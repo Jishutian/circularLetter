@@ -70,14 +70,18 @@ Component({
 			}
 			let id = WebIM.conn.getUniqueId();
 			let msg = new WebIM.message(msgType.TEXT, id);
+      let that=this;
 			msg.set({
-				msg: this.data.userMessage,
+        msg: this.data.userMessage,
 				from: this.data.username.myName,
 				to: this.getSendToParam(),
 				roomType: false,
 				chatType: this.data.chatType,
+        aaa:'',
 				success(id, serverMsgId){
-
+          console.log('-------------------------');
+          console.log(that.data.username.myName, that.getSendToParam());
+          console.log('-------------------------');
 				}
 			});
 			if(this.data.chatType == msgType.chatType.CHAT_ROOM){
