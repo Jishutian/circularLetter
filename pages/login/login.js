@@ -22,7 +22,9 @@ Page({
 
     this.login();
 	},
-
+  getPhoneNumber(e){
+    console.log(e)
+  },
 	bindUsername: function(e){
 		this.setData({
 			name: e.detail.value

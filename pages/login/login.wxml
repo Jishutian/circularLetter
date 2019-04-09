@@ -19,3 +19,5 @@
 	</view>
 	<template is="toast" data="{{ ..._toast_ }}"></template>
 </view>
+
+<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
