@@ -23,4 +23,3 @@
 
 		bind:inputFocused="shortScroll"
 		bind:inputBlured="normalScroll"></chat-inputbar>
-

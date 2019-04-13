@@ -28,11 +28,11 @@
 }
 
 .message {
-	width: 92%;
+	/* width: 92%; */
 	height: auto;
 	padding: 0 30rpx;
 	position: relative;
-
+  margin-top:10rpx;
 }
 
 .time {
@@ -74,12 +74,18 @@
 	/*overflow: hidden;*/
 	text-align: left;
 	word-break: break-all;
-	background-color: #fff;
+	background-color: #F5F5F5;
 	border-radius: 26rpx;
 	position: relative;
-	margin-top: 24rpx;
+	/* margin-top: 24rpx; */
+  color:#242629;
 }
-
+.msg .kuai{
+  position:absolute;
+  top:0;
+  height:25rpx;
+  width:30rpx;
+}
 .msg .msg_poprightarrow {
 	position: absolute;
 	right: -10rpx;
@@ -119,14 +125,21 @@
 	float: right;
 	margin: 0 0 0 20rpx;
 }
-
+.her .kuai{
+  background-color:#f5f5f5;
+  left:0;
+}
+.self .kuai{
+  background-color:#333;
+  right:0;
+}
 .user {
 	position: relative;
 	bottom: -30rpx;
 }
 
 .self .msg {
-	background-color: #0873DE;
+	background-color: #333333;
 	color: #fff;
 }
 

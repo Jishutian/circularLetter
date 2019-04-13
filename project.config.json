@@ -13,7 +13,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.4",
-	"appid": "wx7725ed4e7ccd36a3",
+	"appid": "wxcefd90d16f5eea70",
 	"projectname": "%E7%8E%AF%E4%BF%A12",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -37,12 +37,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "群组",
-					"pathName": "pages/groups/groups"
+					"pathName": "pages/groups/groups",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "聊天頁面",
+					"pathName": "pages/chatroom/chatroom",
+					"scene": null
 				}
 			]
 		}

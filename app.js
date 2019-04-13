@@ -17,7 +17,6 @@ function addFriend(data){
     member.push({ "groups": [], "name": data.from, "subscription": "both", "jid": "" })
     wx.setStorageSync("member", member)
   }
-
 }
 
 
@@ -25,6 +24,8 @@ function ack(receiveMsg){
 	// 处理未读消息回执
 	var bodyId = receiveMsg.id;         // 需要发送已读回执的消息id
 	var ackMsg = new WebIM.message("read", WebIM.conn.getUniqueId());
+
+  console.log('ackMsg', ackMsg)
 	ackMsg.set({
 		id: bodyId,
 		to: receiveMsg.from
@@ -97,14 +98,6 @@ App({
 			}
 		}
 	},
-
-	// getPage(pageName){
-	// 	var pages = getCurrentPages();
-	// 	return pages.find(function(page){
-	// 		return page.__route__ == pageName;
-	// 	});
-	// },
-
 	onLaunch(){
 		// 调用 API 从本地缓存中获取数据
 		var me = this;
@@ -141,15 +134,7 @@ App({
 			onInviteMessage(message){
 				me.globalData.saveGroupInvitedList.push(message);
 				disp.fire("em.xmpp.invite.joingroup", message);
-				// wx.showModal({
-				// 	title: message.from + " 已邀你入群 " + message.roomid,
-				// 	success(){
-				// 		disp.fire("em.xmpp.invite.joingroup", message);
-				// 	},
-				// 	error(){
-				// 		disp.fire("em.xmpp.invite.joingroup", message);
-				// 	}
-				// });
+			
 			},
 			onPresence(message){
 				//console.log("onPresence", message);
@@ -220,20 +205,16 @@ App({
 				}
 			},
 
-			// onLocationMessage(message){
-			// 	console.log("Location message: ", message);
-			// 	if(message){
-			// 		msgStorage.saveReceiveMsg(message, msgType.LOCATION);
-			// 	}
-			// },
 
 			onTextMessage(message){
 				console.log("onTextMessage", message);
+        // 判断对方在不在我的缓存中，不在的话就把对方加入缓存
         addFriend(message)
 				if(message){
 					if(onMessageError(message)){
 						msgStorage.saveReceiveMsg(message, msgType.TEXT);
 					}
+          // 计算未读消息数
 					calcUnReadSpot(message);
 					ack(message);
 				}

@@ -2,6 +2,7 @@ let WebIM = require("../../utils/WebIM")["default"];
 let msgType = require("msgtype");
 
 module.exports = function(sendableMsg, type, myName){
+  console.log('sendableMsg',sendableMsg, type,myName)
 	var time = WebIM.time();
 	var renderableMsg = {
 		info: {
@@ -15,6 +16,7 @@ module.exports = function(sendableMsg, type, myName){
 			url: sendableMsg.body.body.url,
 			data: getMsgData(sendableMsg, type),
 		},
+    ext: sendableMsg.body.ext,
 		style: sendableMsg.body.from == myName ? "self" : "",
 		time: time,
 		mid: sendableMsg.type + sendableMsg.id,

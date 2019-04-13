@@ -3,7 +3,6 @@
 	<!-- <view class="f-row"> -->
 		<input
 			class="f news"
-			type="text"
 			cursor-spacing="65"
 			confirm-type="send"
 			bindconfirm="sendMessage"

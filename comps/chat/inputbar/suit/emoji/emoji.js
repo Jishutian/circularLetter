@@ -24,6 +24,7 @@ Component({
 		},
 
 		cancelEmoji(){
+      // console.log(EMOJI_STATUS.CLOSED)
 			this.setData({
 				show: EMOJI_STATUS.CLOSED
 			});

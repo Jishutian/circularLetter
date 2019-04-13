@@ -4,6 +4,7 @@ let msgType = require("msgtype");
 let msgStorage = new Disp();
 let disp = require("../../utils/broadcast");
 msgStorage.saveReceiveMsg = function(receiveMsg, type){
+  console.log('receiveMsg', receiveMsg)
 	let sendableMsg;
 	if(type == msgType.IMAGE){
 		sendableMsg = {
@@ -44,7 +45,8 @@ msgStorage.saveReceiveMsg = function(receiveMsg, type){
 				toJid: "",
 				body: {
 					type: type,
-					msg: receiveMsg.data,
+          msg: { ...receiveMsg.data, ...receiveMsg.ext},
+          ext: receiveMsg.ext,
 				},
 			},
 			value: receiveMsg.data

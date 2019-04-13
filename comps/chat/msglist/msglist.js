@@ -34,7 +34,7 @@ Component({
 		},
 
 		onTap(){
-			this.triggerEvent("msglistTap", null, { bubbles: true });
+			// this.triggerEvent("msglistTap", null, { bubbles: true });
 		},
 
 		previewImage(event){
@@ -87,7 +87,7 @@ Component({
 				});
 			}
 			
-
+      console.log('打印消息樹',this.data.chatMsg.concat(curChatMsg))
 			wx.setStorageSync("rendered_" + sessionKey, historyChatMsgs);
 			wx.setStorageSync(sessionKey, null);
 			Index = historyChatMsgs.slice(-10).length;
@@ -129,6 +129,7 @@ Component({
 
 		msgStorage.on("newChatMsg", function(renderableMsg, type, curChatMsg){
 			if(!me.__visibility__) return;
+
 			// 判断是否属于当前会话
 			if(username.groupId){
 				// 群消息的 to 是 id，from 是 name

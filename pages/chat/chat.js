@@ -16,14 +16,6 @@ Page({
 
 	onLoad(){
 		let me = this;
-		//监听加好友申请
-		disp.on("em.xmpp.subscribe", function(){
-      console.log(11111)
-			me.setData({
-				messageNum: getApp().globalData.saveFriendList.length,
-				unReadTotalNotNum: getApp().globalData.saveFriendList.length + getApp().globalData.saveGroupInvitedList.length
-			});
-		});
 
 		//监听未读消息数
 		disp.on("em.xmpp.unreadspot", function(message){
@@ -32,21 +24,12 @@ Page({
 				unReadSpotNum: getApp().globalData.unReadMessageNum > 99 ? '99+' : getApp().globalData.unReadMessageNum,
 			});
 		});
-
-		//监听未读加群“通知”
-		disp.on("em.xmpp.invite.joingroup", function(){
-			me.setData({
-				unReadNoticeNum: getApp().globalData.saveGroupInvitedList.length,
-				unReadTotalNotNum: getApp().globalData.saveFriendList.length + getApp().globalData.saveGroupInvitedList.length
-			});
-		});
 	},
 
 	getChatList(){
 		var array = [];
 		var member = wx.getStorageSync("member");
 		var myName = wx.getStorageSync("myUsername");
-    console.log("member",member)
 		for(let i = 0; i < member.length; i++){
 			let newChatMsgs = wx.getStorageSync(member[i].name + myName) || [];
 			let historyChatMsgs = wx.getStorageSync("rendered_" + member[i].name + myName) || [];

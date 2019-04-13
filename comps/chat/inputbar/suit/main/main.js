@@ -71,13 +71,17 @@ Component({
 			let id = WebIM.conn.getUniqueId();
 			let msg = new WebIM.message(msgType.TEXT, id);
       let that=this;
+      let bbb='嘻嘻嘻';
 			msg.set({
         msg: this.data.userMessage,
 				from: this.data.username.myName,
 				to: this.getSendToParam(),
 				roomType: false,
 				chatType: this.data.chatType,
-        aaa:'',
+        ext: {
+          'aaa':'11111',
+          'bbb':bbb
+        },
 				success(id, serverMsgId){
           console.log('-------------------------');
           console.log(that.data.username.myName, that.getSendToParam());

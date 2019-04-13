@@ -22,6 +22,7 @@ Component({
 			location: null,
 			//video: null,
 		},
+    iconUrl: 'https://sz-account-header-pic.oss-cn-shenzhen.aliyuncs.com/',
 	},
 	methods: {
 		// 事件有长度限制：仅限 26 字符
@@ -49,7 +50,8 @@ Component({
 		},
 
 		cancelEmoji(){
-			this.data.__comps__.emoji.cancelEmoji();
+      console.log(this.data.__comps__.emoji)
+			// this.data.__comps__.emoji.cancelEmoji();
 		},
 
 		sendImage(){
@@ -63,6 +65,14 @@ Component({
 		emojiAction(evt){
 			this.data.__comps__.main.emojiAction(evt.detail.msg);
 		},
+    // 点击切换显示隐藏底部
+    clickAdd() {
+      this.setData({
+        flagBottom: !this.data.flagBottom
+      });
+      // 给父元素传递
+      this.triggerEvent('showBottom', {showBottom:this.data.flagBottom})
+    },
 	},
 
 	// lifetimes

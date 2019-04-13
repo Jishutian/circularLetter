@@ -1,14 +1,23 @@
-<view class="room_bar">
+<view class="room_bar" hidden='{{true}}'>
 	<chat-suit-emoji id="chat-suit-emoji" bind:newEmojiStr="emojiAction"></chat-suit-emoji>
-	<chat-suit-main id="chat-suit-main" username="{{ username }}" chatType="{{ chatType }}" bind:inputFocused="cancelEmoji"></chat-suit-main>
+
 	<chat-suit-image id="chat-suit-image" username="{{ username }}" chatType="{{ chatType }}"></chat-suit-image>
 	<!-- <chat-suit-location id="chat-suit-location" username="{{ username }}"></chat-suit-location> -->
 	<!-- <chat-suit-video id="chat-suit-video" username="{{ username }}"></chat-suit-video> -->
 	
-	<view class="other_func {{isIPX? 'other_func_X': ''}}">
-		<view class="open_emoji" bind:tap="openEmoji">
+
+  <view class="botomBox other_func">
+    <view class="open_emoji" bind:tap="openEmoji">
 			<image src="../../../images/Emoji.png"/>
 		</view>
+    <chat-suit-main id="chat-suit-main" username="{{ username }}" chatType="{{ chatType }}" bind:inputFocused="cancelEmoji"></chat-suit-main>
+  
+  
+  </view>
+
+
+	<view class="other_func {{isIPX? 'other_func_X': ''}}">
+	
 		<view class="v-record" bind:tap="toggleRecordModal">
 			<image
 				class="icon-record"
@@ -20,8 +29,38 @@
 		<view class="send_image" bind:tap="sendImage">
 			<image src="../../../images/pic.png" style="height:20px; width: 20px"/>
 		</view>
-		<!-- <view class="send_image" bind:tap="sendLocation">
-			<image src="../../../images/iconLocation@2x.png" style="height:18px;"/>
-		</view> -->
 	</view>
+</view>
+
+<!-- 底部操作区 -->
+<view class="bottom">
+  <view class="bottomTop j-flex">
+    <image mode='aspectFill' src="{{iconUrl+'voice.png'}}" class="icon" bindtap='clickRecord'></image>
+    <!-- <input placeholder='输入新消息' placeholder-class='c999 f28' hidden='{{recordFlag}}'></input> -->
+      <chat-suit-main id="chat-suit-main"   username="{{ username }}" chatType="{{ chatType }}" bind:inputFocused="cancelEmoji"></chat-suit-main>
+    <!-- 点击录音后显示录音按钮 -->
+    <view class="record c242629 f28" hidden='{{!recordFlag}}' bindlongtap='sound'>{{recordText}}</view>
+    <!-- 表情 -->
+    <image mode='aspectFill' src="{{iconUrl+'expression.png'}}" class="icon"></image>
+    <!-- 显示更多 -->
+    <image mode='aspectFill' src="{{iconUrl+'add.png'}}" class="icon" bindtap='clickAdd'></image>
+  </view>
+  <!-- 点击add显示 -->
+  <view class="bottomBottom {{flagBottom?'show':''}}">
+    <!-- 相册 -->
+    <view class="item" bind:tap="sendImage">
+      <image mode="aspectFill" src="{{iconUrl+'album.png'}}" class="img"></image>
+      <view class="text f24 c999">相册</view>
+    </view>
+    <!-- 定制 -->
+    <!-- <navigator class="item" url="../myCustomized/myCustomized" hover-class='none'>
+      <image mode="aspectFill" src="{{iconUrl+'customized.png'}}" class="img"></image>
+      <view class="text f24 c999">我的定制</view>
+    </navigator> -->
+    <!-- 套餐 -->
+    <navigator class="item" url="../myCustomized/myCustomized" hover-class='none'>
+      <image mode="aspectFill" src="{{iconUrl+'customized.png'}}" class="img"></image>
+      <view class="text f24 c999">我的套餐</view>
+    </navigator>
+  </view>
 </view>
