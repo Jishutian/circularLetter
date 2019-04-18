@@ -50,8 +50,8 @@ Component({
 		},
 
 		cancelEmoji(){
-      console.log(this.data.__comps__.emoji)
-			// this.data.__comps__.emoji.cancelEmoji();
+      // console.log(this.data.__comps__.emoji)
+			this.data.__comps__.emoji.cancelEmoji();
 		},
 
 		sendImage(){
