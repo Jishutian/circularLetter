@@ -3,7 +3,7 @@
 	<!-- <view class="f-row"> -->
 		<input
 			class="f news"
-			cursor-spacing="65"
+			cursor-spacing="10"
 			confirm-type="send"
 			bindconfirm="sendMessage"
 			value="{{ inputMessage }}"
@@ -11,6 +11,8 @@
 			placeholder-style="color:#CFCFCF; padding-left:5px;"
 			bindinput="bindMessage"
 			bind:blur="blur" 
+      bind:tap="focus"
+			bind:focus="focus"
       />
 
 		<!-- <button class="send_btn" bind:tap="sendMessage">发送</button> -->

@@ -125,8 +125,8 @@ Page({
 		}
 
 		var myName = wx.getStorageSync("myUsername");
-		var currentPage = getCurrentPages();
-		
+    var currentPage = getCurrentPages();
+    console.log(currentPage)
 		wx.showModal({
 			title: "删除该聊天记录",
 			confirmText: "删除",

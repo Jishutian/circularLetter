@@ -9,13 +9,18 @@
 }
 
 .showEmoji {
+  position: fixed;
+  left:0;
+  bottom:104rpx;
 	margin-top: 30px;
-	width: 100%;
+	width:750rpx;
+  box-sizing:border-box;
 	height: 145px;
 	background-color: #dddddd;
 	padding-top: 10px;
 	padding-left: 3%;
 	display: block;
+  z-index:10;
 }
 
 .emoji_list image,
