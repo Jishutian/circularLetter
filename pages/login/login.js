@@ -69,12 +69,12 @@ Page({
 		// }
 		wx.setStorage({
 			key: "myUsername",
-      data: __test_account__ || 'xixixi123456'
+      data: __test_account__ || '14'
 		});
 
 		getApp().conn.open({
 			apiUrl: WebIM.config.apiURL,
-      user: __test_account__ || 'xixixi123456',
+      user: __test_account__ || '14',
 			pwd: __test_psword__ || '123456',
 			grant_type: this.data.grant_type,
 			appKey: WebIM.config.appkey
