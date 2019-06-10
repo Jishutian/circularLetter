@@ -71,7 +71,6 @@ Component({
 			let id = WebIM.conn.getUniqueId();
 			let msg = new WebIM.message(msgType.TEXT, id);
       let that=this;
-      let bbb='嘻嘻嘻';
 			msg.set({
         msg: this.data.userMessage,
 				from: this.data.username.myName,
@@ -79,8 +78,9 @@ Component({
 				roomType: false,
 				chatType: this.data.chatType,
         ext: {
-          'aaa':'11111',
-          'bbb':bbb
+          'userAlias':'我是14啊',
+          'userAvatar':'https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=833172462,845195358&fm=85&s=5210E02B96E0730112B0E5EE0300F021',
+          'merchantId':1
         },
 				success(id, serverMsgId){
           console.log('-------------------------');

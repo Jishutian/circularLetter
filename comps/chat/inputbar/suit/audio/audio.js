@@ -221,6 +221,11 @@ Component({
 						},
 						from: me.data.username.myName,
 						to: me.getSendToParam(),
+            ext: {
+              'userAlias': '我是14啊',
+              'userAvatar': 'https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=833172462,845195358&fm=85&s=5210E02B96E0730112B0E5EE0300F021',
+              'merchantId':1
+            },
 						roomType: false,
 						chatType: me.data.chatType,
 					});

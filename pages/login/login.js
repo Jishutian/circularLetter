@@ -20,7 +20,7 @@ Page({
 			me.toastFilled('用户名或密码错误');
 		});
 
-    this.login();
+    // this.login();
 	},
   getPhoneNumber(e){
     console.log(e)

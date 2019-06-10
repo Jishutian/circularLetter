@@ -4,6 +4,8 @@
 <scroll-view scroll-y="true" class="chat_list_wraper {{gotop? (isIPX? 'goTopX': 'goTop'): 'goback'}}" style="padding-bottom: {{isIPX?'270rpx':'226rpx'}}">
 
 
+<view class="" catchtap='into_singleChatRoom'>111111111111111</view>
+
 <view wx:for="{{ arr }}" wx:key="index" class="chat_list" data-item="{{ item }}" catchtap='del_chat'>
 	<swipe-delete >
 		<view class="tap_mask" catchtap="into_chatRoom" data-item="{{ item }}">

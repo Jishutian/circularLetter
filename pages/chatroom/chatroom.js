@@ -9,6 +9,7 @@ Page({
 
 	// options = 系统传入的 url 参数
 	onLoad(options){
+    console.log(options)
 		let username = JSON.parse(options.username);
 		this.setData({ username: username });
     console.log(username)
