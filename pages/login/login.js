@@ -20,7 +20,7 @@ Page({
 			me.toastFilled('用户名或密码错误');
 		});
 
-    // this.login();
+    this.login();
 	},
   getPhoneNumber(e){
     console.log(e)
@@ -69,12 +69,12 @@ Page({
 		// }
 		wx.setStorage({
 			key: "myUsername",
-      data: __test_account__ || '14'
+      data: __test_account__ || '1002'
 		});
 
 		getApp().conn.open({
 			apiUrl: WebIM.config.apiURL,
-      user: __test_account__ || '14',
+      user: __test_account__ || '1002',
 			pwd: __test_psword__ || '123456',
 			grant_type: this.data.grant_type,
 			appKey: WebIM.config.appkey

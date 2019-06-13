@@ -103,7 +103,7 @@ Page({
 		var my = wx.getStorageSync("myUsername");
 		var nameList = {
 			myName: my,
-			your: detail.username
+			your: detail.username||'1005'
 		};
 		wx.navigateTo({
 			url: "../chatroom/chatroom?username=" + JSON.stringify(nameList)

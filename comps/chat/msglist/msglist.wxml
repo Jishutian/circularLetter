@@ -35,9 +35,9 @@
 	scroll-into-view="{{ toView }}">
 	<view class="message" wx:for="{{ chatMsg }}" wx:key="{{ item.mid }}" id="{{ item.mid }}">
   
-		<!-- <view class="time">
+		<view class="time">
 			<text class="time-text">{{ item.time }}</text>
-		</view> -->
+		</view>
 		<view class="main" class="{{ item.style=='self'?'self':'her' }}">
 			<!-- <view class="user"> -->
 				<!-- yourname：就是消息的 from -->
